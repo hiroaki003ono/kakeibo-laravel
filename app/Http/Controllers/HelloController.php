@@ -8,7 +8,8 @@ class HelloController extends Controller
 {
     public function index()
     {
-        return 'こんにちは、Laravel';
+        $url    = route('hello.show', ['name' => 'タロウ']);
+        return 'こんにちは、Laravel<br><a href="' . $url . '">タロウさんに挨拶</a>';
     }
 
     public function show($name)
