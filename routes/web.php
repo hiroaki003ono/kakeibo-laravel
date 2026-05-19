@@ -7,5 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', [HelloController::class, 'index']);
-Route::get('/hello/{name}', [HelloController::class, 'show']);
+Route::get('/hello', [HelloController::class, 'index'])->name('hello.index');
+Route::get('/hello/{name}', [HelloController::class, 'show'])->name('hello.show');
