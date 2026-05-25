@@ -5,6 +5,14 @@
 @section('content')
     <h2>収支一覧</h2>
 
+    @if (session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
+    <p>
+        <a href="{{ route('records.create') }}">収支を追加</a>
+    </p>
+
     @if ($records->isEmpty())
         <p>まだ収支が登録されていません。</p>
     @else
