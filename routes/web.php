@@ -12,3 +12,5 @@ Route::get('/hello', [HelloController::class, 'index'])->name('hello.index');
 Route::get('/hello/{name}', [HelloController::class, 'show'])->name('hello.show');
 
 Route::get('/records', [RecordController::class, 'index'])->name('records.index');
+Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
+Route::post('/records', [RecordController::class, 'store'])->name('records.store');
