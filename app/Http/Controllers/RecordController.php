@@ -32,4 +32,11 @@ class RecordController extends Controller
 
         return redirect()->route('records.index')->with('success', '収支を登録しました。');
     }
+
+    public function destroy(Record $record)
+    {
+        $record->delete();
+
+        return redirect()->route('records.index')->with('success', '収支を削除しました。');
+    }
 }
