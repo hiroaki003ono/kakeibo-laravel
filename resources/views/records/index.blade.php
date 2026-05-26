@@ -24,6 +24,7 @@
                     <th>内容</th>
                     <th>金額</th>
                     <th>種類</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,13 @@
                         <td>{{ $record->description }}</td>
                         <td>{{ number_format($record->amount) }}円</td>
                         <td>{{ $record->type === 'expense' ? '支出' : '収入' }}</td>
+                        <td>
+                            <form action="{{ route('records.destroy', $record) }}" method="POST" onsubmit="return confirm('本当に削除しますか?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">削除</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

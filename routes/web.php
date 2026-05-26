@@ -14,3 +14,4 @@ Route::get('/hello/{name}', [HelloController::class, 'show'])->name('hello.show'
 Route::get('/records', [RecordController::class, 'index'])->name('records.index');
 Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
 Route::post('/records', [RecordController::class, 'store'])->name('records.store');
+Route::delete('/records/{record}', [RecordController::class, 'destroy'])->name('records.destroy');
