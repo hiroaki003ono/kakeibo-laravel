@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
     public function index()
     {
-        $records    = Record::all();
+        $records    = Auth::user()->records;
         return view('records.index', ['records' => $records]);
     }
 
@@ -28,6 +29,8 @@ class RecordController extends Controller
             'type'          => 'required|in:expense,income'
         ]);
 
+        $validated['user_id'] = Auth::id();
+
         Record::create($validated);
 
         return redirect()->route('records.index')->with('success', '収支を登録しました。');
@@ -35,6 +38,10 @@ class RecordController extends Controller
 
     public function destroy(Record $record)
     {
+        if ($record->user_id !== Auth::id()) {
+            abort(403);
+        }    
+
         $record->delete();
 
         return redirect()->route('records.index')->with('success', '収支を削除しました。');
